@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const randomUser = require("./routes/randomUser.route");
+const allUser = require("./routes/allUser.route");
 require("dotenv").config();
 
 // Middleware Connections
@@ -8,7 +10,8 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
-
+app.use("/user/random", randomUser);
+app.use("/user/all", allUser);
 app.get("/", (req, res) => {
   res.send(`Server is running on port: ${PORT}`);
 });
