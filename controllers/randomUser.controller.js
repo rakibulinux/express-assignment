@@ -1,6 +1,6 @@
 const fs = require("fs");
 module.exports.getARandomUser = (req, res) => {
-  fs.readFile("users.json", (err, data) => {
+  fs.readFile(`users.json`, (err, data) => {
     if (err) {
       console.error(err);
       res.status(500).send("Internal Server Error");

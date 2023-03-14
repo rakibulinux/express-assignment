@@ -16,9 +16,11 @@ app.get("/", (req, res) => {
   res.send(`Server is running on port: ${PORT}`);
 });
 
+// For no route
 app.all("*", (req, res) => {
   res.send("No Route found for this URL");
 });
+
 // Connection
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
