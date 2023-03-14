@@ -3,6 +3,7 @@ const app = express();
 const cors = require("cors");
 const randomUser = require("./routes/randomUser.route");
 const allUser = require("./routes/allUser.route");
+const saveUser = require("./routes/saveUser.route");
 require("dotenv").config();
 
 // Middleware Connections
@@ -12,6 +13,7 @@ app.use(express.json());
 // Routes
 app.use("/user/random", randomUser);
 app.use("/user/all", allUser);
+app.use("/user/save", saveUser);
 app.get("/", (req, res) => {
   res.send(`Server is running on port: ${PORT}`);
 });

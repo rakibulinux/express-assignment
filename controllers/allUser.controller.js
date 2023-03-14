@@ -6,7 +6,15 @@ module.exports.allUsers = (req, res) => {
       res.status(500).send("Internal Server Error");
     } else {
       const users = JSON.parse(data);
-      res.send(users);
+
+      // Check for query parameter
+      const limit = req.query.limit;
+      if (limit && !isNaN(limit)) {
+        const limitedUsers = users.slice(0, parseInt(limit));
+        res.send(limitedUsers);
+      } else {
+        res.send(users);
+      }
     }
   });
 };
