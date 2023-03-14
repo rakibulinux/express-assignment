@@ -1,6 +1,6 @@
 const fs = require("fs");
-
-module.exports.saveUser = (req, res) => {
+module.exports.updateUser = (req, res) => {
+  // Validate the request body
   const { gender, name, contact, address, photoUrl } = req.body;
   if (!gender || !name || !contact || !address || !photoUrl) {
     res.status(400).send("Missing required fields");
@@ -18,21 +18,19 @@ module.exports.saveUser = (req, res) => {
     // Parse the JSON data
     const users = JSON.parse(data);
 
-    // Generate a unique ID for the new user
-    const Id = users.length + 1;
+    // Find the user to update by ID
+    const userToUpdate = users.find((user) => user.id === req.params.id);
+    if (!userToUpdate) {
+      res.status(404).send("User not found");
+      return;
+    }
 
-    // Create a new user object
-    const newUser = {
-      Id,
-      gender,
-      name,
-      contact,
-      address,
-      photoUrl,
-    };
-
-    // Add the new user to the array of users
-    users.push(newUser);
+    // Update the user object with the new data
+    userToUpdate.gender = gender;
+    userToUpdate.name = name;
+    userToUpdate.contact = contact;
+    userToUpdate.address = address;
+    userToUpdate.photoUrl = photoUrl;
 
     // Write the updated users array to the JSON file
     fs.writeFile("users.json", JSON.stringify(users), (err) => {
@@ -42,8 +40,8 @@ module.exports.saveUser = (req, res) => {
         return;
       }
 
-      // Return the new user object in the response
-      res.send(newUser);
+      // Return the updated user object in the response
+      res.send(userToUpdate);
     });
   });
 };

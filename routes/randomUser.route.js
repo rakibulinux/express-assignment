@@ -3,6 +3,6 @@ const { getARandomUser } = require("../controllers/randomUser.controller");
 
 const router = express.Router();
 
-router.route("/").get(getARandomUser).post().put().patch().delete();
+router.route("/").get(getARandomUser);
 
 module.exports = router;
