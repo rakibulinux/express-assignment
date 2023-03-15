@@ -19,11 +19,11 @@ module.exports.saveUser = (req, res) => {
     const users = JSON.parse(data);
 
     // Generate a unique ID for the new user
-    const Id = users.length + 1;
+    const id = users.length + 1;
 
     // Create a new user object
     const newUser = {
-      Id,
+      id,
       gender,
       name,
       contact,

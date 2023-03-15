@@ -5,6 +5,7 @@ const randomUser = require("./routes/randomUser.route");
 const allUser = require("./routes/allUser.route");
 const saveUser = require("./routes/saveUser.route");
 const updateUser = require("./routes/updateUser.route");
+const updateBulkUser = require("./routes/updateBulkUser.roure");
 
 require("dotenv").config();
 
@@ -17,6 +18,7 @@ app.use("/user/random", randomUser);
 app.use("/user/all", allUser);
 app.use("/user/save", saveUser);
 app.use("/user/update/:id", updateUser);
+app.use("/user/bulk-update", updateBulkUser);
 app.get("/", (req, res) => {
   res.send(`Server is running on port: ${PORT}`);
 });
