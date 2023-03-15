@@ -1,5 +1,5 @@
 const fs = require("fs");
-
+const { v4: uuidv4 } = require("uuid");
 module.exports.saveUser = (req, res) => {
   const { gender, name, contact, address, photoUrl } = req.body;
   if (!gender || !name || !contact || !address || !photoUrl) {
@@ -19,7 +19,7 @@ module.exports.saveUser = (req, res) => {
     const users = JSON.parse(data);
 
     // Generate a unique ID for the new user
-    const id = users.length + 1;
+    const id = uuidv4();
 
     // Create a new user object
     const newUser = {

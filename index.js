@@ -6,6 +6,7 @@ const allUser = require("./routes/allUser.route");
 const saveUser = require("./routes/saveUser.route");
 const updateUser = require("./routes/updateUser.route");
 const updateBulkUser = require("./routes/updateBulkUser.roure");
+const deleteUser = require("./routes/deleteUser.route");
 
 require("dotenv").config();
 
@@ -19,6 +20,7 @@ app.use("/user/all", allUser);
 app.use("/user/save", saveUser);
 app.use("/user/update/:id", updateUser);
 app.use("/user/bulk-update", updateBulkUser);
+app.use("/user/delete", deleteUser);
 app.get("/", (req, res) => {
   res.send(`Server is running on port: ${PORT}`);
 });
