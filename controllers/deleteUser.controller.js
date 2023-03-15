@@ -3,8 +3,8 @@ const fs = require("fs");
 module.exports.deleteUser = (req, res) => {
   const { id } = req.params;
 
-  // Check if ID is valid (positive integer)
-  if (!Number.isInteger(+id) || +id <= 0) {
+  // Check if ID is valid
+  if (!id) {
     return res.status(400).json({ error: "Invalid user ID" });
   }
 
@@ -18,7 +18,7 @@ module.exports.deleteUser = (req, res) => {
     let users = JSON.parse(data);
 
     // Check if user with specified ID exists
-    const userIndex = users.findIndex((user) => user.id === +id);
+    const userIndex = users.findIndex((user) => user.id === id);
     if (userIndex === -1) {
       return res.status(404).json({ error: "User not found" });
     }
